@@ -16,21 +16,21 @@ class ProdutoRepository{
    getProdutoAll(){
       return produtos
    }
-
-   create({id, cod, nome, descricao, preco, urlImagem}: IProduto){
-      const produto = [
+   //{id, cod, nome, descricao, preco, urlImagem}
+   create(produto: IProduto){
+      const newProduto = [
          {
-            id : id,
-            cod : cod, 
-            nome : nome, 
-            descricao : descricao, 
-            preco: preco,
-            urlImagem: urlImagem
+            id : produto.id,
+            cod : produto.cod, 
+            nome : produto.nome, 
+            descricao : produto.descricao, 
+            preco: produto.preco,
+            urlImagem: produto.urlImagem
          }
       ]
       
 
-      produtos.push(produto)
+      produtos.push(newProduto)
    }
 
    /*getProdutoAll(){

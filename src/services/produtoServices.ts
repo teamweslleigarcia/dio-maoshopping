@@ -1,4 +1,4 @@
-
+import { Produto } from '../entities/Produto'
 import { ProdutoRepository } from '../repository/produtoRepository'
 
 class ProdutoService{
@@ -10,14 +10,16 @@ class ProdutoService{
 
         return produtos
     }
-
-    criarProdutos(id: string, cod: string, nome: string, descricao: string, preco: number, urlImagem: string){
+    //id: string, cod: string, nome: string, descricao: string, preco: number, urlImagem: string
+    criarProdutos(produto: Produto){
         const produtoRepository = new ProdutoRepository()
 
+        const newProduto : Produto = produto
 
-        const produto = produtoRepository.create({id, cod, nome, descricao, preco, urlImagem})
+        //{id, cod, nome, descricao, preco, urlImagem}
+       const produtoNovo = produtoRepository.create(newProduto)
 
-        return produto
+        return produtoNovo
 
     }
 }

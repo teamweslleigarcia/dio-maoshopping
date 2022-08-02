@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
 import { StatusCodes } from 'http-status-codes'
-
+import { Produto } from '../entities/Produto'
 import {ProdutoService} from '../services/produtoServices'
 
 class ProdutoControllers{
@@ -21,7 +21,10 @@ class ProdutoControllers{
     }
 
     createNewProduto(req: Request, res: Response, next: NextFunction){
-        return res.status(StatusCodes.CREATED).json({ message : 'CREATE PRODUTO'})
+        const produtoService = new ProdutoService()
+        const produto : Produto = req.body
+        const uuid = produtoService.criarProdutos(produto)
+        return res.status(StatusCodes.CREATED).json(uuid)
     }
 
     updateProduto(req: Request, res: Response, next: NextFunction){

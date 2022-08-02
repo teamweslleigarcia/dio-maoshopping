@@ -5,11 +5,11 @@ const router = Router()
 
 const produtoControllers = new ProdutoControllers()
 
-router.get('/produtos', produtoControllers.getProdutoAll)
-router.get('/produtos/1', produtoControllers.getProdutoById)
-router.get('/produtos/produto1', produtoControllers.getProdutoByName)
-router.post('/produtos', produtoControllers.createNewProduto)
-router.put('/produtos/:1', produtoControllers.updateProduto)
-router.delete('/produtos/1', produtoControllers.removeProduto)
+router.get('/', produtoControllers.getProdutoAll)
+router.get('/:uuid', produtoControllers.getProdutoById)
+router.get('/:nome=?', produtoControllers.getProdutoByName)
+router.post('/', produtoControllers.createNewProduto)
+router.put('/:uuid', produtoControllers.updateProduto)
+router.delete('/:uuid', produtoControllers.removeProduto)
 
 export default  router
