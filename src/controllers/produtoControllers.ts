@@ -2,7 +2,6 @@ import {Request, Response, NextFunction} from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { Produto } from '../entities/Produto'
 import {ProdutoService} from '../services/produtoServices'
-
 class ProdutoControllers{
     async getProdutoAll(req: Request, res: Response, next: NextFunction){
         const produtoService = new ProdutoService()
@@ -12,8 +11,18 @@ class ProdutoControllers{
         return res.status(StatusCodes.OK).json(produtos)
     }
 
-    getProdutoById(req: Request, res: Response, next: NextFunction){
-        return res.status(StatusCodes.OK).json({ message : 'PRODUTO POR ID'})
+    async getProdutoById(req: Request<{uuid: string}>, res: Response, next: NextFunction){
+        
+        const uuid = req.params.uuid
+        console.log("req.params.uuid: ", uuid)
+        const produtoService = new ProdutoService()
+
+        const produtoId  = await produtoService.buscarProdutosById(uuid)
+        console.log("Controllers produtoId: ", produtoId)
+      
+        const produto  = await Promise.resolve(produtoId)
+
+        return res.status(StatusCodes.OK).json(produto)
     }
 
     getProdutoByName(req: Request, res: Response, next: NextFunction){
@@ -28,7 +37,13 @@ class ProdutoControllers{
     }
 
     updateProduto(req: Request, res: Response, next: NextFunction){
-        return res.status(StatusCodes.OK).json({ message : 'PRODUTO ATUALIZADO'})
+        const produtoService = new ProdutoService()
+
+        const produto : Produto = req.body
+
+        const uuid =produtoService.atualizarProduto(produto)
+
+        return res.status(StatusCodes.OK).json(uuid)
     }
 
     removeProduto(req: Request, res: Response, next: NextFunction){
