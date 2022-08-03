@@ -1,10 +1,11 @@
-import { Column, Entity, PrimaryColumn, CreateDateColumn} from 'typeorm'
+import { Column, Entity, PrimaryColumn, CreateDateColumn, PrimaryGeneratedColumn} from 'typeorm'
 import { v4 as uuid } from 'uuid'
 
 @Entity('produtos')   
 class Produto{
-
+    
     @PrimaryColumn()
+    @PrimaryGeneratedColumn("uuid")
     readonly id:  string
 
     @Column()
@@ -24,12 +25,6 @@ class Produto{
 
     @CreateDateColumn()
     created_at: Date
-
-    constructor(){
-        if(!this.id){
-            this.id = uuid()
-        }
-    }
 }
 
 export { Produto } 

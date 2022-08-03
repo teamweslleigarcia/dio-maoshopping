@@ -4,10 +4,10 @@ import { Produto } from '../entities/Produto'
 import {ProdutoService} from '../services/produtoServices'
 
 class ProdutoControllers{
-    getProdutoAll(req: Request, res: Response, next: NextFunction){
+    async getProdutoAll(req: Request, res: Response, next: NextFunction){
         const produtoService = new ProdutoService()
 
-        const produtos = produtoService.buscarProdutos()
+        const produtos = await produtoService.buscarProdutos()
 
         return res.status(StatusCodes.OK).json(produtos)
     }

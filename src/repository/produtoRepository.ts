@@ -1,6 +1,5 @@
 import { Produto } from '../entities/Produto'
-import { dataSource } from "../database/database"
-import produtos from '../database/fakeDatabase'
+import {  dataSourceSQLite } from "../configorm"
 
 interface IProduto{
    id: string
@@ -11,9 +10,10 @@ interface IProduto{
    urlImagem: string
 }
 
+
 class ProdutoRepository{
    
-   getProdutoAll(){
+   /*getProdutoAll(){
       return produtos
    }
    //{id, cod, nome, descricao, preco, urlImagem}
@@ -31,35 +31,45 @@ class ProdutoRepository{
       
 
       produtos.push(newProduto)
-   }
-
-   /*getProdutoAll(){
-      const produtos = dataSource.getRepository(Produto)
-         .createQueryBuilder('produtos')
-         .select()
-         .getMany()
-      return produtos
    }*/
 
-   /*create({id, cod, nome, descricao, preco}: IProduto){
-      const produto = dataSource
+   async getProdutoAll(){
+      const produtos = await dataSourceSQLite
+         .getRepository(Produto)
+         .find()
+
+
+      return produtos
+   }
+
+   create(produto : IProduto) {
+
+      const newProduto = dataSourceSQLite
          .createQueryBuilder()
          .insert()
          .into(Produto)
          .values([
             {
-               id: id,
-               cod : cod, 
-               nome : nome, 
-               descricao : descricao, 
-               preco: preco,
-               urlImagem: urlImagem
+               id: produto.id,
+               cod : produto.cod, 
+               nome : produto.nome, 
+               descricao : produto.descricao, 
+               preco: produto.preco,
+               urlImagem: produto.urlImagem
             }
       ])
       .execute()
          
-      return produto
-   }*/
+      return newProduto
+   }
+
+   update(produto: IProduto){
+      return "Produto Atualizado" 
+   }
+
+   remove(produto: IProduto){
+      return "Produto Removido" 
+   }
 
 }
 

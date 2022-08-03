@@ -1,21 +1,13 @@
 import express, { Request, Response } from "express";
-import { StatusCodes } from "http-status-codes";
 import cors from "cors";
+import { StatusCodes } from "http-status-codes";
 import produtoRoute from './routers/produto.routes'
-import { dataSource } from "./database/database"
 
-dataSource
-    .initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization:", err)
-    })
+import './configorm'
 
 const app = express();
 
-const port = 3000
+const PORT = 3000
 
 app.use(cors());
 app.use(express.json());
@@ -32,4 +24,4 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 
-app.listen(port, () => console.log('listening on port http://localhost:' + port));
+app.listen(PORT, () => console.log('listening on port http://localhost:' + PORT));

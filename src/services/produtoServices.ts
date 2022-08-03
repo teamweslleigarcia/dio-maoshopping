@@ -3,21 +3,21 @@ import { ProdutoRepository } from '../repository/produtoRepository'
 
 class ProdutoService{
     
-    buscarProdutos(){
+    async buscarProdutos(){
         const produtoRepository = new ProdutoRepository()
 
-        const produtos = produtoRepository.getProdutoAll()
+        const produtos = await produtoRepository.getProdutoAll()
 
         return produtos
     }
     //id: string, cod: string, nome: string, descricao: string, preco: number, urlImagem: string
-    criarProdutos(produto: Produto){
+    async criarProdutos(produto: Produto){
         const produtoRepository = new ProdutoRepository()
 
         const newProduto : Produto = produto
 
         //{id, cod, nome, descricao, preco, urlImagem}
-       const produtoNovo = produtoRepository.create(newProduto)
+       const produtoNovo = await produtoRepository.create(newProduto)
 
         return produtoNovo
 
