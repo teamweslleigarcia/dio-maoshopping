@@ -1,5 +1,7 @@
 import { Produto } from '../entities/Produto'
 import { ProdutoRepository } from '../repository/produtoRepository'
+import {  dataSourceSQLite } from "../configorm"
+import { DatabaseError } from './../errors/database.error';
 
 class ProdutoService{
     
@@ -12,11 +14,9 @@ class ProdutoService{
     }
 
     async buscarProdutosById(uuid: string): Promise<Produto | null>{
-        console.log("service uuid: ", uuid)
         const produtoRepository = new ProdutoRepository()
 
         const produtoId = await produtoRepository.getProdutoById(uuid)
-        console.log("produtoId: ", produtoId)
 
         const produto  = await Promise.resolve(produtoId)
 
@@ -34,15 +34,13 @@ class ProdutoService{
 
     }
 
-    async atualizarProduto(produto : Produto){
+    async atualizarProduto(produto: Produto){
         const produtoRepository = new ProdutoRepository()
 
-        const updateProduto : Produto = produto
-
-        const produtoAtualizado = await produtoRepository.update(updateProduto)
-
-        return produtoAtualizado
-
+        
+        const updateProduto  = await  produtoRepository.update(produto)
+        console.log("updateProduto: ", updateProduto)
+            
     }
 
 }

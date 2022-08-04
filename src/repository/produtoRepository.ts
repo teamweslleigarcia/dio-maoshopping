@@ -1,6 +1,6 @@
 import { Produto } from '../entities/Produto'
 import {  dataSourceSQLite } from "../configorm"
-import { QueryBuilder } from 'typeorm'
+import { UpdateResult} from 'typeorm'
 import { DatabaseError } from './../errors/database.error';
 
 
@@ -26,7 +26,6 @@ class ProdutoRepository{
    }
    //db.query<User>(query, [uuid]);
    async getProdutoById(uuid: string): Promise<Produto | null>{
-      console.log("uuid Repositoty", uuid)
       try{
          const produtoId = await dataSourceSQLite.getRepository(Produto)
             .findOneBy(
@@ -34,12 +33,8 @@ class ProdutoRepository{
                   id: uuid
                }
             )
-         console.log("produtoId Repositoty", produtoId)
-        
-         //console.log("produto Repositoty", produto)
 
          const produto  =  Promise.resolve(produtoId)
-         //const produto = await <Produto>
 
          console.log('produtoId Repository', produto)
 
@@ -71,24 +66,29 @@ class ProdutoRepository{
       return newProduto
    }
 
-   async update(produto: IProduto){
+   async update(produto: Produto):Promise<void>{
 
-      const updateProduto = await dataSourceSQLite
+      const {id, cod, nome, descricao, preco, urlImagem} = produto
+      console.log("id do Repository", id)
+      const produtoId = await dataSourceSQLite
       .createQueryBuilder()
       .update(Produto)
       .set(
          {
-            cod : produto.cod, 
-            nome : produto.nome, 
-            descricao : produto.descricao, 
-            preco: produto.preco,
-            urlImagem: produto.urlImagem
+            cod : cod, 
+            nome : nome, 
+            descricao : descricao, 
+            preco: preco,
+            urlImagem: urlImagem
          }
       )
-      .where("produto.id = id")
+      .where("id=:id", { id: id })
       .execute()
+      
+      console.log("ProdutoId Repository", produtoId)
 
-      return updateProduto 
+      const produtoUpdate  = await Promise.resolve(produtoId)
+      console.log("produtoUpdate Repository", produtoUpdate)
    }
 
    remove(produto: IProduto){

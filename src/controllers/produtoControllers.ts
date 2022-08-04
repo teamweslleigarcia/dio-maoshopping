@@ -2,6 +2,7 @@ import {Request, Response, NextFunction} from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { Produto } from '../entities/Produto'
 import {ProdutoService} from '../services/produtoServices'
+import  ProdutoModel  from '../models/produtoModel'
 class ProdutoControllers{
     async getProdutoAll(req: Request, res: Response, next: NextFunction){
         const produtoService = new ProdutoService()
@@ -14,11 +15,10 @@ class ProdutoControllers{
     async getProdutoById(req: Request<{uuid: string}>, res: Response, next: NextFunction){
         
         const uuid = req.params.uuid
-        console.log("req.params.uuid: ", uuid)
+
         const produtoService = new ProdutoService()
 
         const produtoId  = await produtoService.buscarProdutosById(uuid)
-        console.log("Controllers produtoId: ", produtoId)
       
         const produto  = await Promise.resolve(produtoId)
 
@@ -36,14 +36,33 @@ class ProdutoControllers{
         return res.status(StatusCodes.CREATED).json(uuid)
     }
 
-    updateProduto(req: Request, res: Response, next: NextFunction){
+    async updateProduto(req: Request<{uuid: string}>, res: Response, next: NextFunction){
         const produtoService = new ProdutoService()
 
-        const produto : Produto = req.body
+        const uuid = req.params.uuid
 
-        const uuid =produtoService.atualizarProduto(produto)
+        const produtoId : ProdutoModel = req.body
+        produtoId.id = uuid
 
-        return res.status(StatusCodes.OK).json(uuid)
+        const produto : Produto = await produtoService.buscarProdutosById(produtoId.id)
+        console.log("Produto Controller", produto)
+
+        console.log("ProdutoId Controller", produtoId)
+
+        const updateProduto = await produtoService.atualizarProduto(produtoId)
+        console.log("updateProduto Controller", produto)
+        //const produto : Produto | null  = await produtoService.buscarProdutosById(uuid)
+        //await produtoService.atualizarProduto(produtoBody)
+        //const produto: ProdutoModel = req.body;
+        //produto.id = uuid
+
+        //const produtoId =produtoService.atualizarProduto(produto.id)
+
+        //const {id, cod, nome, descricao, preco, urlImagem} = req.body
+
+        
+        //return res.status(StatusCodes.OK).json(produtoId)
+        return res.status(StatusCodes.OK).json(updateProduto)
     }
 
     removeProduto(req: Request, res: Response, next: NextFunction){

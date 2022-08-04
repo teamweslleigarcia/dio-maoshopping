@@ -16,6 +16,7 @@ const dataSourceSQLite = new DataSource({
     database: "./src/database/database.sqlite",
     entities: ["src/entities/*.ts"],
     synchronize: true,
+    logging: true,
 })
 
 dataSourceSQLite.initialize()
