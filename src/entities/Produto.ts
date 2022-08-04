@@ -22,7 +22,7 @@ class Produto{
     @Column()
     urlImagem: string
 
-    @CreateDateColumn({ default: () => "NOW()" })
+    @CreateDateColumn()
     created_at: Date
 }
 

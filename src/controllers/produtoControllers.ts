@@ -44,29 +44,23 @@ class ProdutoControllers{
         const produtoId : ProdutoModel = req.body
         produtoId.id = uuid
 
-        const produto : Produto = await produtoService.buscarProdutosById(produtoId.id)
-        console.log("Produto Controller", produto)
-
-        console.log("ProdutoId Controller", produtoId)
+        //maneira certa const produto : Produto = await produtoService.buscarProdutosById(produtoId.id)
+        await produtoService.buscarProdutosById(produtoId.id)
 
         const updateProduto = await produtoService.atualizarProduto(produtoId)
-        console.log("updateProduto Controller", produto)
-        //const produto : Produto | null  = await produtoService.buscarProdutosById(uuid)
-        //await produtoService.atualizarProduto(produtoBody)
-        //const produto: ProdutoModel = req.body;
-        //produto.id = uuid
-
-        //const produtoId =produtoService.atualizarProduto(produto.id)
-
-        //const {id, cod, nome, descricao, preco, urlImagem} = req.body
-
-        
-        //return res.status(StatusCodes.OK).json(produtoId)
+  
         return res.status(StatusCodes.OK).json(updateProduto)
     }
 
-    removeProduto(req: Request, res: Response, next: NextFunction){
-        return res.status(StatusCodes.OK).json({ message : 'PRODUTO REMOVIDO'})
+    removeProduto(req: Request<{uuid: string}>, res: Response, next: NextFunction){
+
+        const produtoService = new ProdutoService()
+
+        const uuid = req.params.uuid
+
+        produtoService.excluirProduto(uuid)
+
+        return res.status(StatusCodes.OK).json()
     }
 }
 

@@ -13,6 +13,15 @@ interface IProduto{
    urlImagem: string
 }
 
+//FUNCOES
+/* 
+getAll -> buscar todos
+getById -> buscar por uuid
+getByName -> buscar por nome do produto
+save -> criar produto 
+update -> atualizar produto
+remove -> excluir produto
+*/
 
 class ProdutoRepository{
 
@@ -24,7 +33,7 @@ class ProdutoRepository{
 
       return produtos
    }
-   //db.query<User>(query, [uuid]);
+
    async getProdutoById(uuid: string): Promise<Produto | null>{
       try{
          const produtoId = await dataSourceSQLite.getRepository(Produto)
@@ -69,7 +78,7 @@ class ProdutoRepository{
    async update(produto: Produto):Promise<void>{
 
       const {id, cod, nome, descricao, preco, urlImagem} = produto
-      console.log("id do Repository", id)
+
       const produtoId = await dataSourceSQLite
       .createQueryBuilder()
       .update(Produto)
@@ -85,14 +94,20 @@ class ProdutoRepository{
       .where("id=:id", { id: id })
       .execute()
       
-      console.log("ProdutoId Repository", produtoId)
-
-      const produtoUpdate  = await Promise.resolve(produtoId)
-      console.log("produtoUpdate Repository", produtoUpdate)
+      //maneira certa const produtoUpdate  = await Promise.resolve(produtoId)
+      await Promise.resolve(produtoId)
    }
 
-   remove(produto: IProduto){
-      return "Produto Removido" 
+   async remove(uuid : string): Promise<void>{
+      
+      const removeDataSource = await dataSourceSQLite
+         .createQueryBuilder()
+         .delete()
+         .from(Produto)
+         .where("id=:id", { id: uuid })
+         .execute()
+
+         await Promise.resolve(removeDataSource)
    }
 
 }
