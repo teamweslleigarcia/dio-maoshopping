@@ -1,0 +1,39 @@
+.container-title-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .title h1{
+        color: var(--purple-dark);
+        text-transform: uppercase;
+        border: 3px solid var(--purple-dark);
+        padding: 5px 150px;
+        border-radius: 10px;
+    }
+
+    .title::before{
+        content: "";
+        width: 100%;
+        border: 3px solid var(--purple-dark);
+        position: relative;
+    }
+
+    .title::after{
+        content: "";
+        width: 100%;
+        border: 3px solid var(--purple-dark);
+        position: relative;
+    }
+    
+}
+

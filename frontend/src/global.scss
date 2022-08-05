@@ -1,0 +1,74 @@
+:root{
+    --primary : #0d6efd;
+    --secondary: #6c757d;
+    --success : #198754;
+    --danger : #dc3545;
+    --warning : #ffc107;
+    --info : #0dcaf0;
+    --text-light : #f8f9fa;
+    --text-dark : #212529;
+
+    --purple-light :#a21a94;
+    --purple-dark: #640e73;
+
+    --yellow : #fdfa03;
+
+    --background-light : #f8f9fa;
+    --background : #ececec;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+body{
+    background-color: var(--background);
+    color: var(--text-dark);
+}
+
+.background-purple-dark{
+    color:var(--text-light) ;
+    background-color: var(--purple-dark);
+}
+
+.background-purple-light{
+    color:var(--text-light) ;
+    background-color: var(--purple-light);
+}
+
+a{
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.bt-comprar{
+    width: 240px;
+    height: 60px;
+    color: var(--text-light);
+    background-color: var(--success);
+    font-weight: bolder;
+}
+
+.bt-add-cart{
+    width: 240px;
+    height: 60px;
+    color: var(--primary);
+    background-color: var(--info);
+    font-weight: bolder;
+}
+
+.de-por{
+    text-decoration: line-through;
+    font-weight: bold;
+}

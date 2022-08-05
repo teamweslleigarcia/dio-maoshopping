@@ -1,0 +1,45 @@
+.container-search-product{
+    width: inherit;
+    margin: 30px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search-product{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 800px;
+
+        .search{
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .search:focus{
+            outline: 1px solid var(--primary);
+        }
+
+        a{
+            background-color: var(--primary);
+            height: 50px;
+            padding: 10px;
+            color: var(--text-light);
+            margin-left: 0;
+            margin-right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        a:hover{
+            background-color: indigo;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+    }
+}
