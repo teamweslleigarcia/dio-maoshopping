@@ -1,5 +1,6 @@
 import React from 'react'
 import { BsWhatsapp } from 'react-icons/bs'
+import { FaRegUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import Cart from '../Cart';
 import './navbar.scss'
@@ -21,13 +22,13 @@ const Navbar = () => {
                 </div>
                 <div className='navbar-login'>
                     <div className='navbar-login--user'>
-                        <img src="" alt="" />
+                        <FaRegUser size={32}/>
                     </div>
                     <div className='navbar-login--name'>
                         <span>Usuário</span>
                         <small>
                             <Link to= "/login">Entre</Link> Ou
-                            <Link to= "/register">Cadastre-se</Link>
+                            <Link to= "/register"> Cadastre-se</Link>
                         </small>
 
                     </div>

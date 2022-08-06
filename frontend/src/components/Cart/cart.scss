@@ -1,0 +1,24 @@
+.carrinho{
+    color: var(--text-dark);
+    display: flex;
+
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a:hover{
+        text-decoration: none;
+    }
+
+    span{
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        size: 40px;
+        font-weight: bold;
+    }
+}

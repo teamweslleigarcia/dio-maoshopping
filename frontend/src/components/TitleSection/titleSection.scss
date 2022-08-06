@@ -3,7 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 10px 50px;
+
 
     .title{
         display: flex;
@@ -14,9 +15,9 @@
     }
 
     .title h1{
-        color: var(--purple-dark);
+        color: var(--text-dark);
         text-transform: uppercase;
-        border: 3px solid var(--purple-dark);
+        border: 3px solid var(--text-dark);
         padding: 5px 150px;
         border-radius: 10px;
     }
@@ -24,14 +25,14 @@
     .title::before{
         content: "";
         width: 100%;
-        border: 3px solid var(--purple-dark);
+        border: 1px solid var(--text-dark);
         position: relative;
     }
 
     .title::after{
         content: "";
         width: 100%;
-        border: 3px solid var(--purple-dark);
+        border: 1px solid var(--text-dark);
         position: relative;
     }
     
