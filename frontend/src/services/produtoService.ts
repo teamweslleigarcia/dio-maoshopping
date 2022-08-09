@@ -1,29 +1,61 @@
-import axios from 'axios'
-import { ProdutoModel } from '../Models/ProdutoModel'
+import IProduto from '../Models/IProduto'
+import http from './http-common'
+
+import api from "./http-common"
 
 class ProdutoService{
 
+    getAll(){
+        return http.get<Array<IProduto>>("/produtos")
+    }
+
+    getById(id:string){
+        return http.get<IProduto>(`/produtos/${id}`)
+    }
+
+    findByName(name:string){
+        return http.get<Array<IProduto>>(`/produtos/${name}`)
+    }
+
+    create(data:IProduto){
+        return http.post<IProduto>("/produtos", data)
+    }
+
+    update(data:IProduto, id:string){
+        return http.put<any>(`/produtos/${id}`, data)
+    }
+
+    delete(id:string){
+        return http.delete<any>(`/produtos/${id}`)
+    }
+
+    deleteAll(){
+        return http.delete<any>(`/produtos`)
+    }
+
     async getAllProdutos(){
         try{
-            const response = await axios.get('http://localhost:3000/produtos')
-            console.log(response)
+            return await api.get('/produtos')
+                .then((response)=>{
+                    return response.data
+                })
         }catch(error){
             console.log(error)
         }
         
     }
 
-    getProduto(){
-        const produto : ProdutoModel = {
-            id :  "92208322-6a0f-43c9-837e-6485dd83f769",
-            nome : "Tênis Asics Gel Equation",
-            descricao : "11 Masculino",
-            preco : 242.99,
-            urlImagem : "https://github.com/teamweslleigarcia/dio-maoshopping/blob/main/produtos/esportivos/T%C3%AAnis%20Asics%20Gel%20Equation%2011%20Masculino-2FV-8435-038.jpg?raw=true"
+    async getProductById(uuid:string){
+        try{
+            return await api.get(`/produtos/${uuid}`)
+                    .then((response)=>{
+                        return response.data
+        })
+        }catch(error){
+            console.log(error)
         }
-
-        return produto
     }
+
 }
 
 export  {ProdutoService}

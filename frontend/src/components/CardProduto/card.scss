@@ -9,6 +9,14 @@
         text-decoration: none;
     }
 
+    button{
+        cursor: pointer;
+    }
+
+    button:hover{
+        text-decoration: underline;
+    }
+
     .card-header{
         width: inherit;
         background-color: var(--background);

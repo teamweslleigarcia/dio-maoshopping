@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { StatusCodes } from "http-status-codes";
@@ -7,17 +8,13 @@ import './configorm'
 
 const app = express();
 
-const PORT = 3000
+const PORT = 3005
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/produtos', produtoRoute)
-
-app.get("/usuarios", (req: Request, res: Response) => {
-    return res.status(StatusCodes.OK).json({ message:'usuários'});
-})
 
 app.get("/", (req: Request, res: Response) => {
     return res.status(StatusCodes.OK).json({ message:'hello word'});

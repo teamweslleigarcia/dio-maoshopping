@@ -1,6 +1,6 @@
-export type ProdutoModel = {
-    id: string,
-    cod: string,
+export default interface IProduto{
+    id?: string,
+    cod?: string,
     nome : string
     descricao : string,
     preco : number,
