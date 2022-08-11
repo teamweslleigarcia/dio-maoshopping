@@ -1,11 +1,11 @@
-import React , { FunctionComponent } from 'react';
+import React  from 'react';
 import './titleSection.scss'
 
-type TitleProps = {
+type Props = {
   titulo : string
 }
 
-const TitleSection: FunctionComponent<TitleProps> = ({titulo}: TitleProps) =>{
+const TitleSection = ({titulo}: Props) =>{
   return (
     <div className='container-title-section'>
       <div className='title'>

@@ -1,11 +1,11 @@
-import IProduto from '../Models/IProduto'
-import http from './http-common'
+/*import IProduto from '../Models/IProduto'
+import http from './http-common' */
 
 import api from "./http-common"
 
 class ProdutoService{
 
-    getAll(){
+    /*getAll(){
         return http.get<Array<IProduto>>("/produtos")
     }
 
@@ -31,7 +31,7 @@ class ProdutoService{
 
     deleteAll(){
         return http.delete<any>(`/produtos`)
-    }
+    } */
 
     async getAllProdutos(){
         try{

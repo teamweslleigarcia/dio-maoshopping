@@ -9,7 +9,7 @@ function  Home() {
   return (    
     <div className='container'>
       <section>
-        <TitleSection titulo = "Ofertas" />
+       <TitleSection titulo = "Ofertas" />
         <Products />
       </section>
     </div>
