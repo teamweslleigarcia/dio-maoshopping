@@ -3,16 +3,21 @@ import TitleSection from '../../components/TitleSection';
 import Products from '../../components/Products';
 
 import './home.scss'
+import Navbar from '../../components/Navbar';
 
 function  Home() {
    
-  return (    
-    <div className='container'>
-      <section>
-       <TitleSection titulo = "Ofertas" />
-        <Products />
-      </section>
-    </div>
+  return (
+    <>
+      <Navbar />
+      <div className='container'>
+        <section>
+          <TitleSection titulo = "Ofertas" />
+          <Products />
+        </section>
+      </div>
+    </>
+    
   );
 }
 
